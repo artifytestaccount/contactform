@@ -25,7 +25,7 @@ const auth = new google.auth.GoogleAuth({
 
 // POST /api/contact
 app.post('/api/contact', async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, phone , subject message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
@@ -40,7 +40,7 @@ app.post('/api/contact', async (req, res) => {
       range: `${SHEET_NAME}!A:D`,
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[new Date().toISOString(), name, email, message]],
+        values: [[new Date().toISOString(), name, email, phone , subject , message]],
       },
     });
 
